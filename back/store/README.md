@@ -125,27 +125,4 @@ curl -H "Authorization: Bearer <TOKEN>" http://localhost:8080/products
 docker run -d --name store-postgres -e POSTGRES_DB=storedb -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 postgres:15
 ```
 
-**Tests**
-
-Ejecutar tests unitarios/integration:
-
-```
-./mvnw test
-```
-
-**Notas para contribuyentes**
-- Sigue la estructura Clean Architecture del proyecto: evita acoplar lógica de dominio a frameworks.
-- Añade tests para nuevos casos de uso o controladores.
-- Si cambias la configuración sensible (JWT secret, DB creds), documenta cómo inyectarlos (variables de entorno o `application-*.yaml`).
-
----
-
-Si quieres, puedo:
-- generar un archivo `API.md` con los ejemplos OpenAPI/Swagger básicos,
-- añadir ejemplos Postman/Insomnia,
-- o crear un `docker-compose` específico para levantar Postgres + la aplicación.
-
-Indícame qué prefieres que haga a continuación.
-
-
 
