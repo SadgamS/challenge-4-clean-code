@@ -118,22 +118,3 @@ GET /api/products
 Headers: Authorization: Bearer <TOKEN>
 ```
 
-**Pruebas**
-
-```bash
-npm test
-```
-
-**Notas para contribuyentes**
-- Mantener separación entre presentación (componentes) y servicios que consumen la API.
-- Añadir validaciones en `ProductFormComponent` y tests unitarios para `ProductService` y `AuthService`.
-
----
-
-Si quieres, puedo:
-- generar un `proxy.conf.json` en el proyecto y actualizar `package.json` para usarlo,
-- crear una colección Postman/Insomnia con las llamadas principales,
-- o añadir un `docker-compose` para servir frontend + backend + postgres.
-
-Indícame qué prefieres que haga a continuación.
-
