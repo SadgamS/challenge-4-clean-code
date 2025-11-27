@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: storedb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d storedb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - store-net
+
+  backend:
+    build:
+      context: ./back/store
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/storedb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      # Secret seguro: cámbialo antes de usar en producción
+      SECURITY_JWT_SECRET: ReplaceThisWithAStrongSecretKeyOfAtLeast32Chars!
+      # opcional: ajustar logging / perfil
+      SPRING_PROFILES_ACTIVE: prod
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    networks:
+      - store-net
+
+  frontend:
+    build:
+      context: ./front/challenge-clean-arch-front
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    networks:
+      - store-net
+
+volumes:
+  pgdata:
+
+networks:
+  store-net:
+    driver: bridge
