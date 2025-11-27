@@ -1,0 +1,21 @@
+<div class="hero bg-base-200 min-h-screen">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+        <div class="text-center xxl:text-left">
+            <h1 class="text-5xl font-bold">Iniciar Sesión!</h1>
+        </div>
+        <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+            <form (ngSubmit)="onSubmit()">
+                <div class="card-body">
+                    <fieldset class="fieldset">
+                        <label class="label">Usuario</label>
+                        <input [(ngModel)]="username" name="username" required class="input" placeholder="Usuario" />
+                        <label class="label">Password</label>
+                        <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password" required class="input" placeholder="Password" />
+                        <button class="btn btn-neutral mt-4">Login</button>
+                        <div><a routerLink="/register" class="link link-hover">Registrarse</a></div>
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

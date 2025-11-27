@@ -1,0 +1,10 @@
+node_modules
+dist
+.git
+.gitignore
+Dockerfile
+.vscode
+.env
+npm-debug.log
+yarn.lock
+*.log
